@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional DJ Mixer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="mixer">
+            <div class="deck" id="deck1">
+                <div class="turntable">
+                    <div class="record"></div>
+                </div>
+                <div class="controls">
+                    <div class="control-group">
+                        <label for="audio1" class="file-input-label">Load Track</label>
+                        <input type="file" id="audio1" accept="audio/*">
+                    </div>
+                    <div class="control-group">
+                        <label>Volume</label>
+                        <input type="range" id="volume1" min="0" max="100" value="100">
+                    </div>
+                    <button class="play-btn" data-deck="1">Play</button>
+                </div>
+            </div>
+
+            <div class="deck" id="deck2">
+                <div class="turntable">
+                    <div class="record"></div>
+                </div>
+                <div class="controls">
+                    <div class="control-group">
+                        <label for="audio2" class="file-input-label">Load Track</label>
+                        <input type="file" id="audio2" accept="audio/*">
+                    </div>
+                    <div class="control-group">
+                        <label>Volume</label>
+                        <input type="range" id="volume2" min="0" max="100" value="100">
+                    </div>
+                    <button class="play-btn" data-deck="2">Play</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="crossfader-container">
+            <label for="crossfader">Crossfader</label>
+            <input type="range" id="crossfader" min="0" max="100" value="50">
+        </div>
+
+        <div class="effects-panel">
+            <h3>Sound Effects</h3>
+            <div class="effects-grid">
+                <button class="effect-btn" data-sound="scratch">Scratch</button>
+                <button class="effect-btn" data-sound="airhorn">Airhorn</button>
+                <button class="effect-btn" data-sound="drum">Drum Roll</button>
+                <button class="effect-btn" data-sound="transition">Transition</button>
+                <button class="effect-btn" data-sound="bass">Bass Drop</button>
+                <button class="effect-btn" data-sound="cymbal">Cymbal</button>
+            </div>
+            <div class="volume-control">
+                <label for="effectVolume">Effects Volume</label>
+                <input type="range" id="effectVolume" min="0" max="100" value="100">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Force the audio context to start on user interaction
+        document.addEventListener('click', () => {
+            if (window.mixer && window.mixer.effectsContext && window.mixer.effectsContext.state === 'suspended') {
+                window.mixer.effectsContext.resume();
+            }
+        }, { once: true });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
